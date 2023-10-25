@@ -1,4 +1,4 @@
-name: Android CI
+name: rvm
 
 on:
   workflow_dispatch:
