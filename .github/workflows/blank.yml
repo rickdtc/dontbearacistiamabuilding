@@ -20,9 +20,9 @@ jobs:
         cache: gradle
      
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x revanced-manager/gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./revanced-manager/gradlew assembleDebug
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
