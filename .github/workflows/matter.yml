@@ -1,0 +1,17 @@
+name: do the griddy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: do the griddy
+      run: |
+        git checkout n2
+        ls
+        
