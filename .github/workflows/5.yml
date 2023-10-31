@@ -1,4 +1,4 @@
-name: rvm
+name: 5
 
 on:
   workflow_dispatch:
