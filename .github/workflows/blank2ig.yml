@@ -18,13 +18,22 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
-     
+    
     - name: Grant execute permission for gradlew
       run: chmod +x revanced-manager/gradlew
     - name: Build with Gradle
       run: cd revanced-manager && ./gradlew assembleRelease -Psign
+    - name: Sign app APK
+      uses: r0adkll/sign-android-release@v1
+      id: sign_app
+      with:
+        releaseDirectory: revanced-manager/build/outputs/apk/release
+        signingKeyBase64: ${{ secrets.SK }}
+        alias: ${{ secrets.AS }}
+        keyStorePassword: ${{ secrets.KSP }}
+        keyPassword: ${{ secrets.KP }}
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: revanced-manager/app/build/outputs/apk/*
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
