@@ -27,7 +27,7 @@ jobs:
       uses: r0adkll/sign-android-release@v1
       id: sign_app
       with:
-        releaseDirectory: revanced-manager/build/outputs/apk/release
+        releaseDirectory: revanced-manager/app/build/outputs/apk/release
         signingKeyBase64: ${{ secrets.SK }}
         alias: ${{ secrets.AS }}
         keyStorePassword: ${{ secrets.KSP }}
