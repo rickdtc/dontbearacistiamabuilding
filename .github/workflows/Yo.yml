@@ -11,6 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
+        submodules: true
         repo: LawnchairLauncher/lawnchair
         ref: expose-feed-preferences
     - name: set up JDK 17
