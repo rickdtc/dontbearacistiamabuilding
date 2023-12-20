@@ -40,4 +40,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: build/outputs/apk/lawnWithQuickstepGithub/release/*.apk
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
