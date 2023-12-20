@@ -13,7 +13,7 @@ jobs:
       with:
         submodules: true
         repository: LawnchairLauncher/lawnchair
-        ref: expose-feed-preferences
+        ref: 14-dev
     - name: set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -24,20 +24,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
     - name: Build with Gradle
-      run: ./gradlew assembleRelease
-    - name: Sign app APK
-      uses: r0adkll/sign-android-release@v1
-      id: sign_app
-      with:
-        releaseDirectory: build/outputs/apk/release
-        signingKeyBase64: ${{ secrets.SK }}
-        alias: ${{ secrets.AS }}
-        keyStorePassword: ${{ secrets.KSP }}
-        keyPassword: ${{ secrets.KP }}
-      env:
-        BUILD_TOOLS_VERSION: "30.0.2"
+      run: ./gradlew assembleLawnWithQuickstepGithubRelease
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        path: build/outputs/apk/lawnWithQuickstepGithub/*.apk
